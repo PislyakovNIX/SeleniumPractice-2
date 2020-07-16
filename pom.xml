@@ -32,6 +32,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.qameta.atlas/atlas-webdriver -->
+        <dependency>
+            <groupId>io.qameta.atlas</groupId>
+            <artifactId>atlas-webdriver</artifactId>
+            <version>1.8.0</version>
+        </dependency>
 
     </dependencies>
 
