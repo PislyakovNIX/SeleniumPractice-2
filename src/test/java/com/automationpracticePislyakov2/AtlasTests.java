@@ -2,21 +2,18 @@ package com.automationpracticePislyakov2;
 
 import com.automationpracticePislyakov2.steps.BaseSteps;
 import io.qameta.atlas.core.Atlas;
-import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
-import io.qameta.atlas.webdriver.WebPage;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.MainPage;
 
-import java.util.List;
-
+@RunWith(JUnitParamsRunner.class)
 public class AtlasTests {
 
     public WebDriver driver;
@@ -29,9 +26,10 @@ public class AtlasTests {
     }
 
     @Test
-    public void simpleTest() throws InterruptedException {
+    @Parameters({"Summer", "Dress", "t-shirt"})
+    public void simpleTest(String searchText) throws InterruptedException {
 
-        String searchText = "Summer";
+        //String searchText = "Summer";
         String expectedSearchText;
 
         BaseSteps steps = new BaseSteps(driver, atlas);
@@ -53,22 +51,16 @@ public class AtlasTests {
         String firstProductFullName = steps.getFirstProductFullName();
         String firstProductPrice = steps.getFirstProductPrice();
 
-        // Добавляем первый товар в корзину
+        // 7. Добавляем первый товар в корзину
         steps.addFirstProductToTheCart();
-        Thread.sleep(20000);
+        //Thread.sleep(20000);
 
         // Сравниваем название и цену
         steps.compareNameAndPrice(firstProductFullName, firstProductPrice);
-
-
-
-
-
-
-
     }
 
     @After
-    public void close() {driver.quit();}
-
+    public void close() {
+        driver.quit();
+    }
 }

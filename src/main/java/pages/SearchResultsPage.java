@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.atlas.webdriver.AtlasWebElement;
+import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Name;
@@ -32,8 +33,5 @@ public interface SearchResultsPage extends WebPage {
     @Name("Новая цена товара")
     @FindBy(".//*[@class='right-block']//*[@class='price product-price']")
     AtlasWebElement newProductPrice();
-
-
-
 
 }

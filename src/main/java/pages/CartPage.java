@@ -15,5 +15,4 @@ public interface CartPage extends WebPage {
     @FindBy("//*[@class='cart_total']")
     AtlasWebElement productPriceOnCartPage();
 
-
 }

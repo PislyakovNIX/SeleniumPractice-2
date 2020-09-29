@@ -28,7 +28,6 @@ public class BaseSteps {
     public BaseSteps(WebDriver driver, Atlas atlas) {
         this.driver = driver;
         this.atlas = atlas;
-
     }
 
     //@Step("Make search with input string «{input}»")
@@ -41,8 +40,8 @@ public class BaseSteps {
 
     //@Step("Нахождение тайтла (слова по которому был поиск) на странице результатов поиска")
     public String searchResultTitleGet(SearchResultsPage searchResultsPage) {
-        String expectedSearchText = searchResultsPage.searchTitle().getText().substring(1);
-        expectedSearchText = expectedSearchText.substring(0, expectedSearchText.length() - 1);
+        String expectedSearchText = searchResultsPage.searchTitle().getText().replaceAll("\"", ""); ;
+        System.out.println(expectedSearchText);
         return expectedSearchText;
     }
 
@@ -100,11 +99,6 @@ public class BaseSteps {
         Assert.assertEquals(expectedName, actualName);
         Assert.assertEquals(expectedPrice, actualPrice);
     }
-
-
-
-
-
 
     private MainPage onMainPage() {
         return atlas.create(driver, MainPage.class);
