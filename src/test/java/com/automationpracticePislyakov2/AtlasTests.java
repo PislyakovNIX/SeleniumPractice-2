@@ -1,6 +1,9 @@
 package com.automationpracticePislyakov2;
 
 import com.automationpracticePislyakov2.steps.BaseSteps;
+import com.automationpracticePislyakov2.steps.CartPageSteps;
+import com.automationpracticePislyakov2.steps.MainPageSteps;
+import com.automationpracticePislyakov2.steps.SearchPageSteps;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 import junitparams.JUnitParamsRunner;
@@ -12,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.SearchResultsPage;
 
 @RunWith(JUnitParamsRunner.class)
 public class AtlasTests {
@@ -33,30 +37,43 @@ public class AtlasTests {
         String expectedSearchText;
 
         BaseSteps steps = new BaseSteps(driver, atlas);
+        MainPageSteps mainPageBaseSteps = new MainPageSteps(driver, atlas);
+        SearchPageSteps searchPageSteps = new SearchPageSteps(driver, atlas);
+        CartPageSteps cartPageSteps = new CartPageSteps(driver, atlas);
+
 
         // 1. Открываем сайт
         driver.get("http://automationpractice.com/index.php");
 
         // 2-3. Вводим слово для поиска и проверяем, что над списком продуктов в надписи 'SEARCH' отображается наш поисковый запрос - "SUMMER"
-        expectedSearchText = steps.searchResultTitleGet(steps.makeSearch(searchText));
-        Assert.assertEquals(searchText.toUpperCase(), expectedSearchText);
+//        expectedSearchText = searchPageSteps.searchResultTitleGet(mainPageBaseSteps.makeSearch(searchText));
+//        Assert.assertEquals(searchText.toUpperCase(), expectedSearchText);
+        // Переделываем на цепочку методов
+        mainPageBaseSteps
+                .makeSearch(searchText)
+                .verifyingSearchPageTitle(searchText)
+                .chooseOptionFromDropdown()
+                .checkProductsSortHighestFirst();
+        //mainPageBaseSteps.makeSearch(searchText).verifyingSearchPageTitle(m, searchText);
 
         // 4. открываем дропдаун сортировки и выбираем опцию 'Price: Highest first'
-        steps.chooseOptionFromDropdown();
+        //searchPageSteps.chooseOptionFromDropdown();
 
         // 5. проверяем, что элементы отсортированы в соответствии с выбранной опцией (сейчас сортировка идёт по старой цене - если у товар есть скидка, нужно смотреть на старую цену)
-        steps.checkProductsSortHighestFirst();
+        //searchPageSteps.checkProductsSortHighestFirst();
 
         // 6. берем первый из найденных товаров и запоминаем его полное название и цену
-        String firstProductFullName = steps.getFirstProductFullName();
-        String firstProductPrice = steps.getFirstProductPrice();
+        String firstProductFullName = searchPageSteps.getFirstProductFullName();
+        String firstProductPrice = searchPageSteps.getFirstProductPrice();
 
         // 7. Добавляем первый товар в корзину
-        steps.addFirstProductToTheCart();
+        searchPageSteps
+                .addFirstProductToTheCart()
+                .compareNameAndPrice(firstProductFullName, firstProductPrice);
         //Thread.sleep(20000);
 
         // Сравниваем название и цену
-        steps.compareNameAndPrice(firstProductFullName, firstProductPrice);
+        //cartPageSteps.compareNameAndPrice(firstProductFullName, firstProductPrice);
     }
 
     @After
