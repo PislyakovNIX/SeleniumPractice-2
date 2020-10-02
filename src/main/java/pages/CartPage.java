@@ -9,10 +9,10 @@ public interface CartPage extends WebPage {
 
     @Name("Имя продукта")
     @FindBy("//*[@class='cart_description']//*[@class='product-name']")
-    AtlasWebElement productNameOnCartPage();
+    AtlasWebElement productName();
 
     @Name("Цена продукта")
     @FindBy("//*[@class='cart_total']")
-    AtlasWebElement productPriceOnCartPage();
+    AtlasWebElement productPrice();
 
 }

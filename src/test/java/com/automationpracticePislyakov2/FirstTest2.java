@@ -33,7 +33,7 @@ public class FirstTest2 {
 
     @Test
     @Parameters({"Summer", "Dress", "t-shirt"})
-    public void searchTest(String searchText) throws InterruptedException, IOException {
+    public void searchTest(String searchText) {
 
         // 1. открываем сайт http://automationpractice.com/
         driver.get("http://automationpractice.com/index.php");

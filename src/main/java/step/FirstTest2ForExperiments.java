@@ -1,4 +1,4 @@
-package com.automationpracticePislyakov2.steps;
+package step;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

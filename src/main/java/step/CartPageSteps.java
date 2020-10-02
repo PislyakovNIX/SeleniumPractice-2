@@ -1,4 +1,4 @@
-package com.automationpracticePislyakov2.steps;
+package step;
 
 import io.qameta.atlas.core.Atlas;
 import org.junit.Assert;
@@ -16,8 +16,8 @@ public class CartPageSteps {
 
     //@Step("Сравниваем сравниваем название и цену в колонке "Total" у товара, на соответствие с сохраненными значениями")
     public void compareNameAndPrice(String expectedName, String expectedPrice) {
-        String actualName = onCartPage().productNameOnCartPage().getText();
-        String actualPrice = onCartPage().productPriceOnCartPage().getText();
+        String actualName = onCartPage().productName().getText();
+        String actualPrice = onCartPage().productPrice().getText();
         Assert.assertEquals(expectedName, actualName);
         Assert.assertEquals(expectedPrice, actualPrice);
     }

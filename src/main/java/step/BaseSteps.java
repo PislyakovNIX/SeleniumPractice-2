@@ -1,4 +1,4 @@
-package com.automationpracticePislyakov2.steps;
+package step;
 
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.AtlasWebElement;
