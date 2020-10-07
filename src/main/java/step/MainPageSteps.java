@@ -4,14 +4,9 @@ import io.qameta.atlas.core.Atlas;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
-public class MainPageSteps {
-
-    public WebDriver driver;
-    public Atlas atlas;
-
+public class MainPageSteps extends BaseSteps {
     public MainPageSteps(WebDriver driver, Atlas atlas) {
-        this.driver = driver;
-        this.atlas = atlas;
+        super(driver, atlas);
     }
 
     //@Step("Make search with input string «{input}»")

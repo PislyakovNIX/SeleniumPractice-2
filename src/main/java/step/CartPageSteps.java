@@ -5,13 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.CartPage;
 
-public class CartPageSteps {
-    public WebDriver driver;
-    public Atlas atlas;
+public class CartPageSteps extends BaseSteps {
 
     public CartPageSteps(WebDriver driver, Atlas atlas) {
-        this.driver = driver;
-        this.atlas = atlas;
+        super(driver, atlas);
     }
 
     //@Step("Сравниваем сравниваем название и цену в колонке "Total" у товара, на соответствие с сохраненными значениями")

@@ -1,6 +1,8 @@
 package pages;
 
+import blocks.FirstProductContainer;
 import io.qameta.atlas.webdriver.AtlasWebElement;
+import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Name;
@@ -22,9 +24,13 @@ public interface SearchResultsPage extends WebPage {
     @FindBy("//*[@id='selectProductSort']/option[contains(text(),'Price: Highest first')]")
     AtlasWebElement dropdownHighestPrice();
 
-    @Name("Коллекция веб элементов продуктовых контейнеров")
+//    @Name("Коллекция веб элементов продуктовых контейнеров")
+//    @FindBy("//*[@class='product-container']")
+//    List<AtlasWebElement> setProductContainers();
+
+    @Name("Коллекция веб элементов продуктовых контейнеров (как коллекция первых контейнеров)")
     @FindBy("//*[@class='product-container']")
-    List<AtlasWebElement> setProductContainers();
+    ElementsCollection<FirstProductContainer> setProductContainers();
 
     // Это добавлено для вынесения блоков
     @Name("Первый продуктовый контейнер")

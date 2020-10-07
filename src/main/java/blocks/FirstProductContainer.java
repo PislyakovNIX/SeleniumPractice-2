@@ -1,10 +1,15 @@
-package pages;
+package blocks;
 
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Name;
+import org.openqa.selenium.NoSuchElementException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface FirstProductContainer extends AtlasWebElement {
+
     @Name("Полное имя первого товара")
     @FindBy("//*[@id='center_column']//*[@class='product-name']")
     AtlasWebElement firstProductName();
@@ -21,4 +26,14 @@ public interface FirstProductContainer extends AtlasWebElement {
     @FindBy("//*[@class='btn btn-default button button-medium']")
     AtlasWebElement proceedToCheckoutButton();
 
+//    default List<Float> findActualProductPriceList(List<AtlasWebElement> productContainerList) {
+//
+//        List<Float>actualProductPriceList = productContainerList.stream().map(webElement -> {
+//            try {
+//                return Float.parseFloat(onSearchResultsPage().productPrice("old-price").getText().substring(1));
+//            } catch (NoSuchElementException e) {
+//                return Float.parseFloat(onSearchResultsPage().productPrice("price").getText().substring(1));
+//            }
+//        }).collect(Collectors.toList());
+//    }
 }

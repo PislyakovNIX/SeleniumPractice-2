@@ -1,4 +1,4 @@
-package com.automationpracticePislyakov2;
+package EnvProperties;
 
 import ru.yandex.qatools.properties.PropertyLoader;
 import ru.yandex.qatools.properties.annotations.Property;
