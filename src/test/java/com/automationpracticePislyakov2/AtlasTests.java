@@ -1,6 +1,6 @@
 package com.automationpracticePislyakov2;
 
-import EnvProperties.EnvProperties;
+import envProperties.EnvProperties;
 import org.testng.annotations.*;
 import step.MainPageSteps;
 import step.SearchPageSteps;
@@ -16,9 +16,6 @@ import java.util.Map;
 //@RunWith(JUnitParamsRunner.class)
 public class AtlasTests {
 
-    // Мапа для сохранения имени и цены первого продукта
-    Map<String, String> map = new HashMap<String, String>();
-
     public WebDriver driver;
     public Atlas atlas;
 
@@ -32,6 +29,8 @@ public class AtlasTests {
     //@Parameters({"Summer", "Dress", "t-shirt"})
     @Parameters({"searchText"})
     public void simpleTest(String searchText) {
+        // Мапа для сохранения имени и цены первого продукта
+        Map<String, String> mapWithProductNameAndPrice = new HashMap<String, String>();
 
         MainPageSteps mainPageBaseSteps = new MainPageSteps(driver, atlas);
         SearchPageSteps searchPageSteps = new SearchPageSteps(driver, atlas);
@@ -46,9 +45,9 @@ public class AtlasTests {
                 .verifyingSearchPageTitle(searchText)
                 .chooseOptionFromDropdown()
                 .checkProductsSortHighestFirst()
-                .rememberFirstNameAndPrice(map)
+                .rememberFirstNameAndPrice(mapWithProductNameAndPrice)
                 .addFirstProductToTheCart()
-                .compareNameAndPrice(map);
+                .compareNameAndPrice(mapWithProductNameAndPrice);
     }
 
     @AfterTest

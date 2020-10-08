@@ -6,7 +6,7 @@ import io.qameta.atlas.webdriver.extension.Name;
 import io.qameta.atlas.webdriver.extension.Param;
 import org.openqa.selenium.NoSuchElementException;
 
-public interface ProductContainer extends AtlasWebElement {
+public interface productContainer extends AtlasWebElement {
 
     @Name("Полное имя первого товара")
 //    @FindBy("//*[@id='center_column']//*[@class='product-name']")
@@ -21,12 +21,11 @@ public interface ProductContainer extends AtlasWebElement {
     @FindBy(".//*[@class='right-block']//*[@class='{{ text }} product-price']")
     AtlasWebElement productPrice(@Param("text") String text);
 
-    default Float getActualProductPrice(ProductContainer container){
+    default Float getActualProductPrice(){
         try {
-            return Float.parseFloat(container.productPrice("old-price").getText().substring(1));
+            return Float.parseFloat(productPrice("old-price").getText().substring(1));
         } catch (NoSuchElementException e) {
-            return Float.parseFloat(container.productPrice("price").getText().substring(1));
+            return Float.parseFloat(productPrice("price").getText().substring(1));
         }
     }
-
 }

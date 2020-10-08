@@ -1,17 +1,13 @@
 package step;
 
-import blocks.ProductContainer;
+import blocks.productContainer;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.ElementsCollection;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import pages.SearchResultsPage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -41,16 +37,17 @@ public class SearchPageSteps extends BaseSteps {
 
     //@Step("Проверяем сортировку")
     public SearchPageSteps checkProductsSortHighestFirst() {
-        ElementsCollection<ProductContainer> productContainerList = onSearchResultsPage().setProductContainers();
-        List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> onSearchResultsPage().
-                ProductContainer().getActualProductPrice(webElement)).collect(Collectors.toList());
+        ElementsCollection<productContainer> productContainerList = onSearchResultsPage().setProductContainers();
+//        List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> onSearchResultsPage().
+//                ProductContainer().getActualProductPrice()).collect(Collectors.toList());
+                List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> webElement.getActualProductPrice()).collect(Collectors.toList());
         // Создаем копию массива цен
         List<Float> expectedProductPriceList = new ArrayList();
         expectedProductPriceList.addAll(actualProductPriceList);
         // Сортируем по убыванию копию массива цен
         Collections.sort(expectedProductPriceList, Collections.reverseOrder());
         // Сравним два списка
-        Assert.assertEquals(expectedProductPriceList, actualProductPriceList);
+        assertThat(expectedProductPriceList, equalTo(actualProductPriceList));
         return this;
     }
 

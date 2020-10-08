@@ -1,12 +1,11 @@
 package pages;
 
-import blocks.ProductContainer;
+import blocks.productContainer;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Name;
-import io.qameta.atlas.webdriver.extension.Param;
 
 public interface SearchResultsPage extends WebPage {
 
@@ -24,7 +23,7 @@ public interface SearchResultsPage extends WebPage {
 
     @Name("Коллекция веб элементов продуктовых контейнеров (как коллекция первых контейнеров)")
     @FindBy("//*[@class='product-container']")
-    ElementsCollection<ProductContainer> setProductContainers();
+    ElementsCollection<productContainer> setProductContainers();
 
     @Name("Кнопка Proceed to checkout")
     @FindBy("//*[@class='btn btn-default button button-medium']")
@@ -33,5 +32,5 @@ public interface SearchResultsPage extends WebPage {
     // Это добавлено для вынесения блоков
     @Name("Первый продуктовый контейнер")
     @FindBy("//*[@class='product-container']")
-    ProductContainer ProductContainer();
+    productContainer ProductContainer();
 }

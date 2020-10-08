@@ -4,9 +4,13 @@ import io.qameta.atlas.core.Atlas;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.CartPage;
+import pages.SearchResultsPage;
 
 import java.util.Iterator;
 import java.util.Map;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 public class CartPageSteps extends BaseSteps {
 
@@ -23,11 +27,10 @@ public class CartPageSteps extends BaseSteps {
             Map.Entry<String, String> pair = iterator.next();
             String key = pair.getKey(); //ключ
             String value = pair.getValue(); //значение
-            Assert.assertEquals(key, actualName);
-            Assert.assertEquals(value, actualPrice);
+            assertThat(key, equalTo(actualName));
+            assertThat(value, equalTo(actualPrice));
         }
     }
-
     private CartPage onCartPage() {
         return atlas.create(driver, CartPage.class);
     }

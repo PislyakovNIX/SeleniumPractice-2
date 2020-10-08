@@ -1,4 +1,4 @@
-package EnvProperties;
+package envProperties;
 
 import ru.yandex.qatools.properties.PropertyLoader;
 import ru.yandex.qatools.properties.annotations.Property;
