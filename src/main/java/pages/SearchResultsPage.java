@@ -1,14 +1,12 @@
 package pages;
 
-import blocks.FirstProductContainer;
+import blocks.ProductContainer;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Name;
 import io.qameta.atlas.webdriver.extension.Param;
-
-import java.util.List;
 
 public interface SearchResultsPage extends WebPage {
 
@@ -24,28 +22,16 @@ public interface SearchResultsPage extends WebPage {
     @FindBy("//*[@id='selectProductSort']/option[contains(text(),'Price: Highest first')]")
     AtlasWebElement dropdownHighestPrice();
 
-//    @Name("Коллекция веб элементов продуктовых контейнеров")
-//    @FindBy("//*[@class='product-container']")
-//    List<AtlasWebElement> setProductContainers();
-
     @Name("Коллекция веб элементов продуктовых контейнеров (как коллекция первых контейнеров)")
     @FindBy("//*[@class='product-container']")
-    ElementsCollection<FirstProductContainer> setProductContainers();
+    ElementsCollection<ProductContainer> setProductContainers();
+
+    @Name("Кнопка Proceed to checkout")
+    @FindBy("//*[@class='btn btn-default button button-medium']")
+    AtlasWebElement proceedToCheckoutButton();
 
     // Это добавлено для вынесения блоков
     @Name("Первый продуктовый контейнер")
     @FindBy("//*[@class='product-container']")
-    FirstProductContainer firstProductContainer();
-
-//    @Name("Старая цена товара")
-//    @FindBy(".//*[@class='right-block']//*[@class='old-price product-price']")
-//    AtlasWebElement oldProductPrice();
-//
-//    @Name("Новая цена товара")
-//    @FindBy(".//*[@class='right-block']//*[@class='price product-price']")
-//    AtlasWebElement newProductPrice();
-
-    @Name("Цена товара. Элемент параметризован. В зависимости от параметра это или Старая цена или Новая цена")
-    @FindBy(".//*[@class='right-block']//*[@class='{{ text }} product-price']")
-    AtlasWebElement productPrice(@Param("text") String text);
+    ProductContainer ProductContainer();
 }

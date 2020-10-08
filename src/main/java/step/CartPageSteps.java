@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.CartPage;
 
+import java.util.Iterator;
+import java.util.Map;
+
 public class CartPageSteps extends BaseSteps {
 
     public CartPageSteps(WebDriver driver, Atlas atlas) {
@@ -12,11 +15,17 @@ public class CartPageSteps extends BaseSteps {
     }
 
     //@Step("Сравниваем сравниваем название и цену в колонке "Total" у товара, на соответствие с сохраненными значениями")
-    public void compareNameAndPrice(String expectedName, String expectedPrice) {
+    public void compareNameAndPrice(Map<String, String> stringMap) {
         String actualName = onCartPage().productName().getText();
         String actualPrice = onCartPage().productPrice().getText();
-        Assert.assertEquals(expectedName, actualName);
-        Assert.assertEquals(expectedPrice, actualPrice);
+        Iterator<Map.Entry<String, String>> iterator = stringMap.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, String> pair = iterator.next();
+            String key = pair.getKey(); //ключ
+            String value = pair.getValue(); //значение
+            Assert.assertEquals(key, actualName);
+            Assert.assertEquals(value, actualPrice);
+        }
     }
 
     private CartPage onCartPage() {

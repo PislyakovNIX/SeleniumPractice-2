@@ -10,8 +10,14 @@ import io.qameta.atlas.webdriver.WebDriverConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //@RunWith(JUnitParamsRunner.class)
 public class AtlasTests {
+
+    // Мапа для сохранения имени и цены первого продукта
+    Map<String, String> map = new HashMap<String, String>();
 
     public WebDriver driver;
     public Atlas atlas;
@@ -39,15 +45,10 @@ public class AtlasTests {
                 .makeSearch(searchText)
                 .verifyingSearchPageTitle(searchText)
                 .chooseOptionFromDropdown()
-                .checkProductsSortHighestFirst();
-
-        // Запоминаем имя и цену первого товара
-        String firstProductFullName = searchPageSteps.getFirstProductFullName();
-        String firstProductPrice = searchPageSteps.getFirstProductPrice();
-
-        searchPageSteps
+                .checkProductsSortHighestFirst()
+                .rememberFirstNameAndPrice(map)
                 .addFirstProductToTheCart()
-                .compareNameAndPrice(firstProductFullName, firstProductPrice);
+                .compareNameAndPrice(map);
     }
 
     @AfterTest
