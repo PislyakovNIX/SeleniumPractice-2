@@ -72,9 +72,9 @@ public class FirstTest2ForExperiments {
         // Переписуем это на стримы.
         List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> {
             try {
-               return Float.parseFloat(webElement.findElement(By.xpath(".//*[@class='right-block']//*[@class='old-price product-price']")).getText().substring(1));
+                return Float.parseFloat(webElement.findElement(By.xpath(".//*[@class='right-block']//*[@class='old-price product-price']")).getText().substring(1));
             } catch (NoSuchElementException e) {
-               return Float.parseFloat(webElement.findElement(By.xpath(".//*[@class='right-block']//*[@class='price product-price']")).getText().substring(1));
+                return Float.parseFloat(webElement.findElement(By.xpath(".//*[@class='right-block']//*[@class='price product-price']")).getText().substring(1));
             }
         }).collect(Collectors.toList());
 

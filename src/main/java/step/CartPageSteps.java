@@ -22,15 +22,14 @@ public class CartPageSteps extends BaseSteps {
     public void compareNameAndPrice(Map<String, String> stringMap) {
         String actualName = onCartPage().productName().getText();
         String actualPrice = onCartPage().productPrice().getText();
-        Iterator<Map.Entry<String, String>> iterator = stringMap.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<String, String> pair = iterator.next();
+        for (Map.Entry<String, String> pair : stringMap.entrySet()) {
             String key = pair.getKey(); //ключ
             String value = pair.getValue(); //значение
             assertThat(key, equalTo(actualName));
             assertThat(value, equalTo(actualPrice));
         }
     }
+
     private CartPage onCartPage() {
         return atlas.create(driver, CartPage.class);
     }

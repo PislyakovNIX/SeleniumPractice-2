@@ -21,7 +21,7 @@ public interface productContainer extends AtlasWebElement {
     @FindBy(".//*[@class='right-block']//*[@class='{{ text }} product-price']")
     AtlasWebElement productPrice(@Param("text") String text);
 
-    default Float getActualProductPrice(){
+    default Float getActualProductPrice() {
         try {
             return Float.parseFloat(productPrice("old-price").getText().substring(1));
         } catch (NoSuchElementException e) {

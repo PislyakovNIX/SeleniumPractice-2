@@ -40,7 +40,7 @@ public class SearchPageSteps extends BaseSteps {
         ElementsCollection<productContainer> productContainerList = onSearchResultsPage().setProductContainers();
 //        List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> onSearchResultsPage().
 //                ProductContainer().getActualProductPrice()).collect(Collectors.toList());
-                List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> webElement.getActualProductPrice()).collect(Collectors.toList());
+        List<Float> actualProductPriceList = productContainerList.stream().map(webElement -> webElement.getActualProductPrice()).collect(Collectors.toList());
         // Создаем копию массива цен
         List<Float> expectedProductPriceList = new ArrayList();
         expectedProductPriceList.addAll(actualProductPriceList);
