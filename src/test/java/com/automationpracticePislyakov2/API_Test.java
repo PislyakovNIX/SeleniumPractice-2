@@ -39,25 +39,10 @@ public class API_Test {
         List<String> linksList = new ArrayList<String>();
         Reader in = new FileReader("src/main/resources/autoria_API_links.csv");
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
-        int i = 0;
         for (CSVRecord record : records) {
             String columnOne = record.get(0);
             linksList.add(columnOne);
         }
         return linksList.toArray();
     }
-
-//    @DataProvider(name = "SearchProvider")
-//    public Object[] getDataFromDataprovider() throws IOException {
-//        Object[] links = new Object[7];
-//        Reader in = new FileReader("src/main/resources/autoria_API_links.csv");
-//        Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
-//        int i = 0;
-//        for (CSVRecord record : records) {
-//            String columnOne = record.get(0);
-//            links[i] = columnOne;
-//            i++;
-//        }
-//        return links;
-//    }
 }
