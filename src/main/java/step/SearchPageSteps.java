@@ -3,6 +3,9 @@ package step;
 import blocks.productContainer;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.ElementsCollection;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.FeatureMatcher;
+import org.hamcrest.Matcher;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import pages.SearchResultsPage;
@@ -11,6 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SearchPageSteps extends BaseSteps {
@@ -22,10 +26,18 @@ public class SearchPageSteps extends BaseSteps {
     //@Step("Проверка, что тайтл на странице после поиска соответсвует поисковому слову")
     public SearchPageSteps verifyingSearchPageTitle(String actualSearchText) {
         String expectedSearchText = onSearchResultsPage().searchTitle().getText().replaceAll("\"", "");
-        assertThat(actualSearchText.toUpperCase(), equalTo(expectedSearchText));
+        assertThat(actualSearchText.toUpperCase(), title(is(expectedSearchText)));
         System.out.println("expectedSearchText: " + expectedSearchText);
-        System.out.println("actualSearchText: " + actualSearchText);
         return this;
+    }
+
+    public static Matcher<String> title(Matcher<? super String> matcher) {
+        return new FeatureMatcher<String, String>(matcher, "Actual title after search", "Expected title after search") {
+            @Override
+            protected String featureValueOf(String actual) {
+                return actual;
+            }
+        };
     }
 
     //@Step("открываем дропдаун сортировки и выбираем опцию 'Price: Highest first'")

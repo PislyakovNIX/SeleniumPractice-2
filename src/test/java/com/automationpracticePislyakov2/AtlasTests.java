@@ -26,14 +26,12 @@ public class AtlasTests {
     }
 
     @Test
-    //@Parameters({"Summer", "Dress", "t-shirt"})
     @Parameters({"searchText"})
     public void simpleTest(String searchText) {
         // Мапа для сохранения имени и цены первого продукта
         Map<String, String> mapWithProductNameAndPrice = new HashMap<String, String>();
 
         MainPageSteps mainPageBaseSteps = new MainPageSteps(driver, atlas);
-        SearchPageSteps searchPageSteps = new SearchPageSteps(driver, atlas);
         EnvProperties envProperties = new EnvProperties();
 
         // 1. Открываем тестовый сайт
