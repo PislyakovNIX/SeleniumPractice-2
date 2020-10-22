@@ -3,7 +3,6 @@ package step;
 import blocks.productContainer;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.ElementsCollection;
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.WebDriver;
@@ -13,8 +12,8 @@ import pages.SearchResultsPage;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static matchers.HasText.hasText;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SearchPageSteps extends BaseSteps {
@@ -24,10 +23,8 @@ public class SearchPageSteps extends BaseSteps {
     }
 
     //@Step("Проверка, что тайтл на странице после поиска соответсвует поисковому слову")
-    public SearchPageSteps verifyingSearchPageTitle(String actualSearchText) {
-        String expectedSearchText = onSearchResultsPage().searchTitle().getText().replaceAll("\"", "");
-        assertThat(actualSearchText.toUpperCase(), title(is(expectedSearchText)));
-        System.out.println("expectedSearchText: " + expectedSearchText);
+    public SearchPageSteps verifyingSearchPageTitle(String expectedSearchText) {
+        onSearchResultsPage().searchTitle().should(hasText(expectedSearchText));
         return this;
     }
 
