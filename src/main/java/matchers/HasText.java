@@ -9,6 +9,7 @@ import org.hamcrest.TypeSafeMatcher;
 public class HasText extends TypeSafeMatcher<AtlasWebElement> {
 
     private String expectedSearchText;
+    private String actualSearchText;
 
     private HasText(String expectedSearchText) {
         this.expectedSearchText = expectedSearchText.toUpperCase();
@@ -16,9 +17,7 @@ public class HasText extends TypeSafeMatcher<AtlasWebElement> {
 
     @Override
     public boolean matchesSafely(AtlasWebElement item) {
-        String actualSearchText = item.getText().replaceAll("\"", "");
-        System.out.println("actualSearchText = " + actualSearchText);
-        System.out.println("expectedSearchText = " + expectedSearchText);
+        actualSearchText = item.getText().replaceAll("\"", "");
         return expectedSearchText.matches(actualSearchText);
     }
 
@@ -29,7 +28,7 @@ public class HasText extends TypeSafeMatcher<AtlasWebElement> {
 
     @Override
     protected void describeMismatchSafely(AtlasWebElement item, Description mismatchDescription) {
-        mismatchDescription.appendText("Actual search text was incorrect");
+        mismatchDescription.appendText("Actual search text was " + actualSearchText);
     }
 
     @Factory
