@@ -24,7 +24,7 @@ public class SearchPageSteps extends BaseSteps {
 
     //@Step("Проверка, что тайтл на странице после поиска соответсвует поисковому слову")
     public SearchPageSteps verifyingSearchPageTitle(String expectedSearchText) {
-        onSearchResultsPage().searchTitle().should(hasText(expectedSearchText));
+        onSearchResultsPage().searchTitle().should(hasText(expectedSearchText.toUpperCase()));
         return this;
     }
 

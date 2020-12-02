@@ -14,4 +14,9 @@ public interface MainPage extends WebPage {
     @Name("Кнопка поиска")
     @FindBy("//*[@name='submit_search']")
     AtlasWebElement searchSubmitButton();
+
+    @Name("Кнопка перехода в категорию Women")
+    @FindBy("//*[@title='Women']")
+    AtlasWebElement womenCategoryButton();
+
 }

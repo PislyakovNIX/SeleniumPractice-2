@@ -16,6 +16,12 @@ public class MainPageSteps extends BaseSteps {
         onMainPage().searchSubmitButton().click();
         return new SearchPageSteps(driver, atlas);
     }
+    //@Step("Go to Women page")
+    public WomenPageSteps goToWomenPage() {
+        onMainPage().womenCategoryButton().click();
+        return new WomenPageSteps(driver, atlas);
+
+    }
 
     private MainPage onMainPage() {
         return atlas.create(driver, MainPage.class);

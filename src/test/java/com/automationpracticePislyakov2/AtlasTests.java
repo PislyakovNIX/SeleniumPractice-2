@@ -3,7 +3,6 @@ package com.automationpracticePislyakov2;
 import envProperties.EnvProperties;
 import org.testng.annotations.*;
 import step.MainPageSteps;
-import step.SearchPageSteps;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 
@@ -46,6 +45,28 @@ public class AtlasTests {
                 .rememberFirstNameAndPrice(mapWithProductNameAndPrice)
                 .addFirstProductToTheCart()
                 .compareNameAndPrice(mapWithProductNameAndPrice);
+    }
+
+    @Test
+    public void womenCategoryTest() throws InterruptedException {
+
+        MainPageSteps mainPageBaseSteps = new MainPageSteps(driver, atlas);
+        EnvProperties envProperties = new EnvProperties();
+
+        driver.get(envProperties.getEnv());
+
+        mainPageBaseSteps
+                .goToWomenPage()
+                .verifyingFilterExisting("Categories")
+                .verifyingFilterExisting("Size")
+                .verifyingFilterExisting("Color")
+                .verifyingFilterExisting("Compositions")
+                .verifyingFilterExisting("Styles")
+                .verifyingFilterExisting("Properties")
+                .verifyingFilterExisting("Availability")
+                .verifyingFilterExisting("Manufacturer")
+                .verifyingFilterExisting("Condition")
+                .verifyingFilterExisting("Price");
     }
 
     @AfterTest

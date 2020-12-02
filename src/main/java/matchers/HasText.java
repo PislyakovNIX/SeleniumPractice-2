@@ -12,7 +12,7 @@ public class HasText extends TypeSafeMatcher<AtlasWebElement> {
     private String actualSearchText;
 
     private HasText(String expectedSearchText) {
-        this.expectedSearchText = expectedSearchText.toUpperCase();
+        this.expectedSearchText = expectedSearchText;
     }
 
     @Override
